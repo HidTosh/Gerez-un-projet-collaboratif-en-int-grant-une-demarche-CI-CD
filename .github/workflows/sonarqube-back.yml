@@ -10,15 +10,20 @@ jobs:
 
   build:
     name: Build and analyze back
-    runs-on: [ubuntu-latest, ubuntu-22.04] # You can add other OS here
+    strategy:
+        matrix:
+            os: [ubuntu-latest, ubuntu-20.04] # You can add other OS here
+            version: [17]
+    runs-on: ${{ matrix.os }}
+    
     steps:
       - uses: actions/checkout@v3
         with:
           fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
-      - name: Set up JDK 17
+      - name: Set up JDK ${{ matrix.version }}
         uses: actions/setup-java@v3
         with:
-          java-version: 17
+          java-version: ${{ matrix.version }}
           distribution: 'zulu' # Alternative distribution options are available.
       - name: Cache SonarCloud packages
         uses: actions/cache@v3
