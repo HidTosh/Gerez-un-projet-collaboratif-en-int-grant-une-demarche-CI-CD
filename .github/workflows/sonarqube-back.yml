@@ -1,4 +1,5 @@
 name: SonarCloud Back
+
 on:
   push:
     branches: [ "main" ]
@@ -6,9 +7,10 @@ on:
     branches: [ "main" ]
     
 jobs:
+
   build:
     name: Build and analyze back
-    runs-on: ubuntu-latest
+    runs-on: [ubuntu-latest, ubuntu-22.04] # You can add other OS here
     steps:
       - uses: actions/checkout@v3
         with:

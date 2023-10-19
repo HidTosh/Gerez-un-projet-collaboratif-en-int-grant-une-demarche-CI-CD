@@ -10,7 +10,7 @@ jobs:
 
   build-front:
     name: Docker Image Front CI
-    runs-on: [ubuntu-latest, ubuntu-20.04-16core] # You can add other OS here  
+    runs-on: [ubuntu-latest] # You can add other OS here
     steps:
       -
         name: Checkout
@@ -35,13 +35,8 @@ jobs:
 
 
   build-back:    
-    runs-on: ${{ matrix.os }}  
-    strategy:
-        matrix:
-            os: [ubuntu-latest]
-    
     name: Docker Image Back CI
-    
+    runs-on: [ubuntu-latest] # You can add other OS here
     steps:
       -
         name: Checkout

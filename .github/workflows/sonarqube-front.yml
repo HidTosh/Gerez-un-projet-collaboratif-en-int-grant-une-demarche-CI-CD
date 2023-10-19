@@ -1,4 +1,5 @@
 name: SonarCloud Front
+
 on:
   push:
     branches: [ "main" ]
@@ -6,9 +7,10 @@ on:
     branches: [ "main" ]
 
 jobs:
+  
   sonarcloud:
     name: SonarCloud front
-    runs-on: ubuntu-latest
+    runs-on: [ubuntu-latest] # You can add other OS here
     steps:
       - uses: actions/checkout@v3
         with:
