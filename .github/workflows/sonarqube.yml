@@ -49,7 +49,6 @@ jobs:
     strategy:
         matrix:
             os: [ubuntu-latest] # You can add other OS here
-            version: [17]
     runs-on: ${{ matrix.os }}
 
     steps:
