@@ -9,7 +9,7 @@ on:
 jobs:
 
   build-back:
-    name: Back CI
+    name: Back build and test
     strategy:
         matrix:
             os: [ubuntu-latest] # You can add other OS here
@@ -45,7 +45,7 @@ jobs:
 
 
   build-front:
-    name: Front CI
+    name: Front build and test
     strategy:
         matrix:
             os: [ubuntu-latest] # You can add other OS here
