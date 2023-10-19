@@ -1,4 +1,4 @@
-name: SonarCloud Back
+name: SonarQube back front
 
 on:
   push:
@@ -7,13 +7,13 @@ on:
     branches: [ "main" ]
     
 jobs:
+
+  build-back:
+    name: SonarQube back
     strategy:
         matrix:
             os: [ubuntu-latest] # You can add other OS here
             version: [17]
-
-  build-back:
-    name: Build and analyze back
     runs-on: ${{ matrix.os }}
 
     steps:
@@ -39,14 +39,19 @@ jobs:
           restore-keys: ${{ runner.os }}-m2
       - name: Build and analyze back
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         working-directory: back
         run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=HidTosh_Gerez-un-projet-collaboratif-en-int-grant-une-demarche-CI-CD
 
   build-front:
-    name: SonarCloud front
+    name: SonarQube front
+    strategy:
+        matrix:
+            os: [ubuntu-latest] # You can add other OS here
+            version: [17]
     runs-on: ${{ matrix.os }}
+
     steps:
       - uses: actions/checkout@v3
         with:
@@ -56,5 +61,5 @@ jobs:
         with:
           projectBaseDir: front
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
