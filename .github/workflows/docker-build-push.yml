@@ -9,7 +9,7 @@ on:
 jobs:
 
   build-front:
-    name: Docker Image Front
+    name: Docker push Image Front
     strategy:
         matrix:
             os: [ubuntu-latest] # You can add other OS here
@@ -39,7 +39,7 @@ jobs:
 
 
   build-back:    
-    name: Docker Image Back
+    name: Docker push Image Back
     strategy:
         matrix:
             os: [ubuntu-latest] # You can add other OS here
